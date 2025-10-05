@@ -33,4 +33,9 @@
     "tsx": "^4.19.1",
     "typescript": "^5.6.3"
   }
+  "scripts": {
+  "dev": "tsx watch src/index.ts",
+  "build": "tsc", // Add this line
+  "start": "node dist/index.js" // Add this line for production
+}
 }
