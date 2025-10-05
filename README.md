@@ -6,7 +6,7 @@ A hybrid AI-powered web application designed to help users verify the authentici
 
 ## ✨ Live Demo
 
-[**News Checker -**](https://news-credibility-checker.vercel.app) ---
+[https://news-credibility-checker.vercel.app**](https://news-credibility-checker.vercel.app) ---
 
 ## 🎯 The Problem
 
