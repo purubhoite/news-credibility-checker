@@ -1,0 +1,16 @@
+# root
+node_modules/
+dist/
+.DS_Store
+.vscode/
+*.log
+
+# frontend (Vite)
+.vite/
+*.local
+
+# backend
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/prisma/dev.db*

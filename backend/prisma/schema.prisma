@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Check {
+  id             String   @id @default(cuid())
+  userId         String
+  originalClaim  String
+  cleanedClaim   String
+  verdict        String
+  confidence     Int
+  summary        String
+  checkedAt      DateTime
+
+  // One-to-many relation to sources
+  sources        Source[]
+  createdAt      DateTime @default(now())
+}
+
+model Source {
+  id               Int      @id @default(autoincrement())
+  title            String
+  source           String
+  url              String   @unique
+  publishedAt      String
+  snippet          String
+  reliabilityScore Int
+  createdAt        DateTime @default(now())
+
+  // Relation back to Check
+  check   Check?  @relation(fields: [checkId], references: [id])
+  checkId String?
+}
+
+
