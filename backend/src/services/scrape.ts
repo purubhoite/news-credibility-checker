@@ -31,12 +31,14 @@ export async function extractArticleFromUrl(url: string): Promise<ArticleData | 
       || '').trim();
 
     // Try to find main article container
-    let container = doc.querySelector('article');
-    if (!container) {
-      const candidates = Array.from(doc.querySelectorAll('div, main, section'))
-        .filter((el) => isProbablyMainContent(el));
-      container = candidates.sort((a, b) => (b.textContent?.length || 0) - (a.textContent?.length || 0))[0] as Element | undefined;
-    }
+let container = doc.querySelector('article');
+if (!container) {
+  const nodes = Array.from(doc.querySelectorAll('div, main, section')) as Element[];
+  const candidates = nodes.filter((el: Element) => isProbablyMainContent(el));
+  container = candidates.sort(
+    (a: Element, b: Element) => (b.textContent?.length || 0) - (a.textContent?.length || 0)
+  )[0] as Element | undefined;
+}
 
     const bodyText = (container?.textContent || doc.body.textContent || '').replace(/\s+/g, ' ').trim();
     if (!bodyText) return null;
